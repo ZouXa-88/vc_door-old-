@@ -35,7 +35,9 @@ class Door {
   String _name = "";
   String _secret = "";
   Uint8List _share1 = Uint8List.fromList(List.empty());
-  List<String> blackList = List.empty(growable: true);
+
+  List<String> _cover2s = List.empty(growable: true);
+  List<String> _blackList = List.empty(growable: true);
 
 
   void setName(String name) {
@@ -63,7 +65,11 @@ class Door {
   }
 
   bool isForbidden(String cover2) {
-    return blackList.contains(cover2);
+    return _blackList.contains(cover2);
+  }
+
+  void addCover2(String cover2) {
+    _cover2s.add(cover2);
   }
 }
 

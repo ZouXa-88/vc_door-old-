@@ -159,7 +159,8 @@ class _DoorAppState extends State<DoorApp>{
       share2[i] = xorShare2[i] ^ random.nextInt(256);
     }
 
-    if(currentDoor.isForbidden(to20x20Binaries(share2))){
+    String cover2 = to20x20Binaries(share2);
+    if(currentDoor.isForbidden(cover2)){
       return false;
     }
 
@@ -168,7 +169,12 @@ class _DoorAppState extends State<DoorApp>{
       covered[i] = share1[i] & share2[i];
     }
 
-    return to20x20Binaries(covered) == currentDoor.getSecret();
+    String tmpSecret = to20x20Binaries(covered);
+    if(tmpSecret == currentDoor.getSecret()){
+      currentDoor.addCover2(cover2);
+      return true;
+    }
+    return false;
   }
 
   String to20x20Binaries(Uint8List uint8list) {
@@ -218,31 +224,6 @@ class _DoorAppState extends State<DoorApp>{
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          /*Flexible(
-            child: Center(
-              child: Row(
-                children: [
-                  const Text('Door: '),
-                  DropdownButton(
-                    value: currentDoor.getName(),
-                    items: doors.listAllDoors()
-                        .map((String doorName) => DropdownMenuItem(
-                          value: doorName,
-                          child: Text(doorName)
-                        ))
-                        .toList(),
-                    onChanged: (String? newValue) {
-                      if (newValue != null) {
-                        setState(() {
-                          currentDoor = doors.getDoor(newValue)!;
-                        });
-                      }
-                    },
-                  ),
-                ],
-              ),
-            )
-          ),*/
           Expanded(
             flex: 1,
             child: Padding(
