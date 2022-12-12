@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.blue,
       ),
       home: const DoorApp(),
       debugShowCheckedModeBanner: false,
@@ -226,6 +226,33 @@ class _DoorAppState extends State<DoorApp>{
         children: [
           Expanded(
             flex: 1,
+            child: ElevatedButton(
+              child: const Text("切換門鎖"),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return SimpleDialog(
+                      title: const Text("切換門鎖"),
+                      children: doors.getAllDoorsList().map((value) {
+                        return SimpleDialogOption(
+                          onPressed: () {
+                            setState(() {
+                              currentDoor = doors.getDoor(value)!;
+                            });
+                            Navigator.pop(context);
+                          },
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    );
+                  }
+                );
+              },
+            ),
+          ),
+          Expanded(
+            flex: 6,
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Center(
@@ -238,7 +265,7 @@ class _DoorAppState extends State<DoorApp>{
             ),
           ),
           Expanded(
-            flex: 1,
+            flex: 6,
             child: QRView(
               key: qrKey,
               onQRViewCreated: _onQRViewCreated,

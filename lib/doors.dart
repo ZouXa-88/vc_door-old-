@@ -21,7 +21,7 @@ class Doors {
     return null;
   }
 
-  List<String> listAllDoors() {
+  List<String> getAllDoorsList() {
     return List.of(_doors.keys);
   }
 }
