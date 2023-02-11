@@ -24,11 +24,11 @@ Future<void> setUpDoors() async {
   Door door1 = Door();
   Door door2 = Door();
 
-  door1.setName("大門");
+  door1.setName("door1");
   door1.setSecret(await loadSecret("assets/images/door1_secret.png"));
   door1.setShare1(await loadShare1("assets/images/door1_share1.png"));
 
-  door2.setName("二樓辦公室");
+  door2.setName("door2");
   door2.setSecret(await loadSecret("assets/images/door2_secret.png"));
   door2.setShare1(await loadShare1("assets/images/door2_share1.png"));
 
