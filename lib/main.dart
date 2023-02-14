@@ -224,6 +224,7 @@ class _DoorAppState extends State<DoorApp>{
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          /*
           Expanded(
             flex: 1,
             child: ElevatedButton(
@@ -251,6 +252,7 @@ class _DoorAppState extends State<DoorApp>{
               },
             ),
           ),
+          */
           Expanded(
             flex: 6,
             child: Padding(
